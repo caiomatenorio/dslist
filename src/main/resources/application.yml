@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: dslist
+  jpa:
+    open-in-view: false
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:test}
+cors:
+  origins: ${CORS_ORIGINS:localhost:3000,localhost:5173}
