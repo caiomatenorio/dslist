@@ -8,22 +8,32 @@ import java.util.Objects;
 public class Game {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+
+    private String title;
+
     @Column(name = "game_year")
-    private Integer year;
+    private  Integer year;
+
     private String genre;
+
     private String platforms;
+
     private Double score;
+
     private String imgUrl;
+
+    @Column(columnDefinition = "TEXT")
     private String shortDescription;
+
+    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
     public Game() {}
 
-    public Game(Long id, String name, Integer year, String genre, Double score, String platforms, String imgUrl,
+    public Game(Long id, String title, Integer year, String genre, Double score, String platforms, String imgUrl,
                 String shortDescription, String longDescription) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.year = year;
         this.genre = genre;
         this.score = score;
@@ -41,12 +51,12 @@ public class Game {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getYear() {
@@ -109,7 +119,7 @@ public class Game {
     public boolean equals(Object object) {
         if (!(object instanceof Game game)) return false;
         return Objects.equals(id, game.id) &&
-                Objects.equals(name, game.name) &&
+                Objects.equals(title, game.title) &&
                 Objects.equals(year, game.year) &&
                 Objects.equals(genre, game.genre) &&
                 Objects.equals(platforms, game.platforms) &&
@@ -121,6 +131,6 @@ public class Game {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, year, genre, platforms, score, imgUrl, shortDescription, longDescription);
+        return Objects.hash(id, title, year, genre, platforms, score, imgUrl, shortDescription, longDescription);
     }
 }
