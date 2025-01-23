@@ -6,7 +6,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_game")
 public class Game {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -118,19 +119,11 @@ public class Game {
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Game game)) return false;
-        return Objects.equals(id, game.id) &&
-                Objects.equals(title, game.title) &&
-                Objects.equals(year, game.year) &&
-                Objects.equals(genre, game.genre) &&
-                Objects.equals(platforms, game.platforms) &&
-                Objects.equals(score, game.score) &&
-                Objects.equals(imgUrl, game.imgUrl) &&
-                Objects.equals(shortDescription, game.shortDescription) &&
-                Objects.equals(longDescription, game.longDescription);
+        return Objects.equals(id, game.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, year, genre, platforms, score, imgUrl, shortDescription, longDescription);
+        return Objects.hashCode(id);
     }
 }
