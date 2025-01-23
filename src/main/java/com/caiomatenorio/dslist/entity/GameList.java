@@ -1,6 +1,7 @@
 package com.caiomatenorio.dslist.entity;
 
 import jakarta.persistence.*;
+
 import java.util.Objects;
 
 @Entity
