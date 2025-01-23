@@ -3,6 +3,7 @@ package com.caiomatenorio.dslist.service;
 import com.caiomatenorio.dslist.dto.GameDTO;
 import com.caiomatenorio.dslist.dto.GameMinDTO;
 import com.caiomatenorio.dslist.entity.Game;
+import com.caiomatenorio.dslist.projection.GameMinProjection;
 import com.caiomatenorio.dslist.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,11 @@ public class GameService {
     public GameDTO findById(Long id) throws NoSuchElementException {
         Game game = gameRepository.findById(id).orElseThrow();
         return new GameDTO(game);
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId) {
+        List<GameMinProjection> games = gameRepository.searchByList(listId);
+        return games.stream().map(GameMinDTO::new).toList();
     }
 }
